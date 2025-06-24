@@ -1,0 +1,17 @@
+# Backup files
+mcp_backup_*.txt
+
+# Logs
+*.log
+
+# Temporary files
+.tmp/
+temp/
+
+# MacOS
+.DS_Store
+
+# Editor files
+*.swp
+*.swo
+*~

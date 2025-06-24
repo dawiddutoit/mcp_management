@@ -1,0 +1,91 @@
+{
+  "mcpServers": {
+    "think-tool": {
+      "command": "npx",
+      "args": [
+        "@cgize/mcp-think-tool"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "AI thinking capabilities and reasoning"
+    },
+    "filesystem": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-filesystem",
+        "/Users/dawiddutoit/projects"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "File system access for projects"
+    },
+    "jetbrains": {
+      "command": "npx",
+      "args": [
+        "@jetbrains/mcp-proxy"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "JetBrains IDE integration"
+    },
+    "desktop-commander": {
+      "command": "npx",
+      "args": [
+        "@wonderwhy-er/desktop-commander@latest"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "Desktop automation and control"
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-sequential-thinking"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "Sequential thinking patterns"
+    },
+    "memory": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-memory"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "Persistent memory across sessions"
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-puppeteer"
+      ]
+    },
+    "podman": {
+      "command": "npx",
+      "args": [
+        "podman-mcp-server@latest"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "Container management with Podman"
+    },
+    "git": {
+      "command": "uvx",
+      "args": [
+        "mcp-server-git",
+        "{{PROJECT_DIR}}"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "Git repository operations"
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2024-06-16",
+    "description": "MCP server configuration for cross-project availability",
+    "author": "MCP Management Tool"
+  }
+}
