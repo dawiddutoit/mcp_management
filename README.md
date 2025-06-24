@@ -68,6 +68,7 @@ chmod +x setup-mcp.sh
 | **memory**              | Persistent memory            | `npx @modelcontextprotocol/server-memory`                     |
 | **podman**              | Container management         | `npx podman-mcp-server@latest`                                |
 | **git**                 | Git repository operations    | `uvx mcp-server-git` (project-aware)                          |
+| **github**              | GitHub API integration       | `docker run ghcr.io/github/github-mcp-server` (requires token) |
 
 ## Why User-Level Configuration?
 
@@ -162,7 +163,83 @@ claude mcp add sequential-thinking npx @modelcontextprotocol/server-sequential-t
 claude mcp add memory npx @modelcontextprotocol/server-memory -s user
 claude mcp add podman npx podman-mcp-server@latest -s user
 claude mcp add git uvx mcp-server-git /Users/dawiddutoit/projects/play/prompter -s user
+claude mcp add github docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server -s user
 ```
+
+## GitHub MCP Server Setup
+
+The GitHub MCP server provides GitHub API integration for repository management, issue tracking, and more.
+
+### Prerequisites
+
+1. **Docker**: The GitHub MCP server runs as a Docker container
+2. **GitHub Personal Access Token**: Required for API authentication
+
+### Setup Steps
+
+#### 1. Create GitHub Personal Access Token
+
+1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic)
+2. Click "Generate new token (classic)"
+3. Select appropriate scopes based on your needs:
+   - `repo` - Full control of private repositories
+   - `public_repo` - Access public repositories
+   - `read:org` - Read org and team membership
+   - `read:user` - Read user profile data
+   - `user:email` - Access user email addresses
+
+#### 2. Set Environment Variable
+
+Add to your shell profile (`.bashrc`, `.zshrc`, etc.):
+
+```bash
+export GITHUB_PERSONAL_ACCESS_TOKEN="your_token_here"
+```
+
+Or set it for the current session:
+
+```bash
+export GITHUB_PERSONAL_ACCESS_TOKEN="your_token_here"
+```
+
+#### 3. Install via Setup Script
+
+```bash
+# The GitHub server is included in the default configuration
+./setup-mcp.sh setup
+```
+
+#### 4. Manual Installation
+
+```bash
+claude mcp add github "docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server" -s user
+```
+
+### Usage Examples
+
+Once configured, you can ask Claude to:
+
+- List repositories in your GitHub account
+- Create new repositories
+- Manage issues and pull requests
+- Search code across repositories
+- Get repository statistics
+- Manage GitHub Actions workflows
+
+### Troubleshooting GitHub MCP Server
+
+#### Token Issues
+- Ensure `GITHUB_PERSONAL_ACCESS_TOKEN` is set in your environment
+- Verify token has necessary permissions for the operations you want to perform
+- Check token hasn't expired
+
+#### Docker Issues
+- Make sure Docker is running: `docker ps`
+- Test the server manually: `docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server`
+
+#### Configuration Issues
+- Verify server is added: `claude mcp list | grep github`
+- Remove and re-add if needed: `claude mcp remove github -s user`
 
 ## Troubleshooting
 

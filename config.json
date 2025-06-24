@@ -80,6 +80,18 @@
       "type": "stdio",
       "scope": "user",
       "description": "Git repository operations"
+    },
+    "github": {
+      "command": "npx",
+      "args": [
+        "@modelcontextprotocol/server-github"
+      ],
+      "type": "stdio",
+      "scope": "user",
+      "description": "GitHub API integration and repository management",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "{{GITHUB_TOKEN}}"
+      }
     }
   },
   "metadata": {
